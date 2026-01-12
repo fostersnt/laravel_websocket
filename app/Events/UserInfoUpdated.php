@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -20,7 +21,7 @@ class UserInfoUpdated implements ShouldBroadcast
      * @return void
      */
     public $user;
-    public function __construct($my_user)
+    public function __construct(User $my_user)
     {
         $this->user = $my_user;
     }
@@ -33,5 +34,12 @@ class UserInfoUpdated implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel('user.' . $this->user->id);
+    }
+
+    public function broadcastWith()
+    {
+        return [
+            'user' => $this->user
+        ];
     }
 }
