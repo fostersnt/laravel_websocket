@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::controller(OpenController::class)->group(function(){
     Route::get('/login', 'showLogin')->name('show.login');
     Route::post('/login', 'login')->name('login');
+    Route::get('/logout', 'logout')->name('logout');
 });
 
 Route::controller(UserController::class)->middleware('auth')->prefix('users')->group(function(){

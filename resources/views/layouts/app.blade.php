@@ -28,7 +28,7 @@
                     <a class="nav-link text-white" href="#">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('show.login') }}">Logout</a>
+                    <a class="nav-link text-white" href="{{ route('logout') }}">Logout</a>
                 </li>
             </ul>
         </nav>
