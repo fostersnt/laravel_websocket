@@ -10,6 +10,9 @@ class UserController extends Controller
 {
     public function index()
     {
+        if (!auth()->user()) {
+            return redirect()->route('show.login');
+        }
         $users = User::query()->latest()->get();
         $user = User::query()->where('email', 'fostersnt@gmail.com')->first();
         // event(new UserInfoUpdated($user));

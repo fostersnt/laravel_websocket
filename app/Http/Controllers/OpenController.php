@@ -8,6 +8,9 @@ class OpenController extends Controller
 {
     public function showLogin()
     {
+        if (auth()->user()) {
+            return redirect()->route('users.index');
+        }
         return view('auth.login');
     }
 

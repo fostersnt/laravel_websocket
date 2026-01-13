@@ -44,4 +44,9 @@ class UserInfoUpdated implements ShouldBroadcast
             'user' => $this->user
         ];
     }
+
+    public function broadcastAs()
+    {
+        return 'user.updated';
+    }
 }
