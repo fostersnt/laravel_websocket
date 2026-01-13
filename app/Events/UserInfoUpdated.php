@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class UserInfoUpdated implements ShouldBroadcast
 {
@@ -38,6 +39,7 @@ class UserInfoUpdated implements ShouldBroadcast
 
     public function broadcastWith()
     {
+        Log::info("UPDATED USER INFO === " . json_encode($this->user));
         return [
             'user' => $this->user
         ];

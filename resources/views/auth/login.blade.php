@@ -53,13 +53,14 @@
             font-size: 14px;
         }
     </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
 
     <div class="login-container">
         <h2>Login to Your Account</h2>
-        
+
         <!-- Display errors if any -->
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -70,21 +71,41 @@
                 </ul>
             </div>
         @endif
-
+        <div class="row">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </div>
+            @endif
+            @if (Session::has('success'))
+                <div class="alert alert-success">
+                    <li>{{ Session::get('success') }}</li>
+                </div>
+            @endif
+            @if (Session::has('error'))
+                <div class="alert alert-danger">
+                    <li>{{ Session::get('error') }}</li>
+                </div>
+            @endif
+        </div>
         <form action="/login" method="POST">
             @csrf
 
             <!-- Email Field -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" name="email" required placeholder="Enter your email">
+                <input type="email" class="form-control" id="email" name="email"
+                    placeholder="Enter your email">
                 <div class="form-text">We'll never share your email with anyone else.</div>
             </div>
 
             <!-- Password Field -->
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+                <input type="password" class="form-control" id="password" name="password"
+                    placeholder="Enter your password">
             </div>
 
             <div class="d-flex justify-content-between mb-3">
@@ -96,7 +117,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Login</button>
-            
+
             <div class="text-center mt-3">
                 <p>Don't have an account? <a href="#">Sign up</a></p>
             </div>

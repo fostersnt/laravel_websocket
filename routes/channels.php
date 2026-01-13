@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Broadcast;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,6 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('user.{userId}', function ($user, $userId) {
-    return $user->id === User::findOrNew($userId)->id;
+    Log::info("CURRENTLY LOGGED-IN USER === " . json_encode($user) . "\nUSER ID === $userId");
+    return $user->id === (int) $userId;
 });
