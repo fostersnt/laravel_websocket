@@ -23,4 +23,4 @@ Broadcast::channel('user.{userId}', function ($user, $userId) {
     // Log::info("CURRENTLY LOGGED-IN USER === " . json_encode($user) . "\nUSER ID === $userId");
     Log::info("CURRENTLY LOGGED-IN USER FROM REACT === " . json_encode($user) . "\nUSER ID === $userId");
     return $user->id === (int) $userId;
-}, ['guards' => ['web']]);
+});

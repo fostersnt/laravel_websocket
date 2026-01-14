@@ -14,8 +14,8 @@ class UserController extends Controller
             return redirect()->route('show.login');
         }
         $users = User::query()->latest()->get();
-        $user = User::query()->where('email', 'fostersnt@gmail.com')->first();
-        event(new UserInfoUpdated($user));
+        // $user = User::query()->where('email', 'fostersnt@gmail.com')->first();
+        // event(new UserInfoUpdated($user));
         // dd($user);
         return view('users.index', compact('users'));
     }
