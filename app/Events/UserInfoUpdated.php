@@ -35,6 +35,7 @@ class UserInfoUpdated implements ShouldBroadcast
     public function broadcastOn()
     {
         return new PrivateChannel('user.' . $this->user->id);
+        // return new Channel('user');
     }
 
     public function broadcastWith()
@@ -45,8 +46,8 @@ class UserInfoUpdated implements ShouldBroadcast
         ];
     }
 
-    public function broadcastAs()
-    {
-        return 'user.updated';
-    }
+    // public function broadcastAs()
+    // {
+    //     return 'user.updated';
+    // }
 }
