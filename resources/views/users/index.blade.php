@@ -72,16 +72,27 @@
         <script type="module">
             let userId = "{{ auth()->id() }}";
 
+            //! Private Channel
             window.Echo.private(`user.${userId}`)
                 .listen('UserInfoUpdated', (e) => {
                     console.table(e.user);
                     updateUserName(e.user);
                 });
 
-                function updateUserName(user)
-                {
-                    document.getElementById('user_name').innerHTML = user.name;
-                }
+            function updateUserName(user) {
+                document.getElementById('user_name').innerHTML = user.name;
+            }
+
+            //! Public Channel
+            // window.Echo.channel(`user`)
+            //     .listen('UserInfoUpdated', (e) => {
+            //         console.table(e.user);
+            //         updateUserName(e.user);
+            //     });
+
+            // function updateUserName(user) {
+            //     document.getElementById('user_name').innerHTML = user.name;
+            // }
         </script>
     @endpush
 @endsection
