@@ -15,7 +15,7 @@ class UserController extends Controller
         }
         $users = User::query()->latest()->get();
         $user = User::query()->where('email', 'fostersnt@gmail.com')->first();
-        // event(new UserInfoUpdated($user));
+        event(new UserInfoUpdated($user));
         // dd($user);
         return view('users.index', compact('users'));
     }
