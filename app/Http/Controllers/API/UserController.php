@@ -36,4 +36,28 @@ class UserController extends Controller
             return response()->json(['state' => 'failed', 'message' => $th->getMessage()], 500);
         }
     }
+
+    public function update(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'email' => 'required|email'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => $validator->errors()->first()
+            ]);
+        }
+        // return response()->json($request->email);
+        $user = User::query()->find(2);
+        if ($user) {
+            $user->update($request->all());
+            event(new UserInfoUpdated($user));
+        return response()->json(['status' => 'success', 'message' => 'Event triggered successfully'], 200);
+        } else {
+        return response()->json(['status' => 'failed', 'message' => 'User not found'], 200);
+        }
+    }
 }

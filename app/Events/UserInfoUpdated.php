@@ -40,7 +40,7 @@ class UserInfoUpdated implements ShouldBroadcast
 
     public function broadcastWith()
     {
-        // Log::info("UPDATED USER INFO === " . json_encode($this->user));
+        Log::info("UPDATED USER INFO === " . json_encode($this->user));
         return [
             'user' => $this->user
         ];
