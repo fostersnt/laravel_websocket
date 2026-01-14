@@ -90,9 +90,8 @@
                 </div>
             @endif
         </div>
-        <form action="/login" method="POST">
+        <form action="{{route('login')}}" method="POST">
             @csrf
-
             <!-- Email Field -->
             <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
