@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\OpenController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +16,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout']);
+// Route::post('/register', [RegisterController::class, 'register']);
+
 Route::controller(OpenController::class)->group(function(){
     Route::get('/login', 'showLogin')->name('show.login');
-    Route::post('/login', 'login')->name('login');
-    Route::get('/logout', 'logout')->name('logout');
+    // Route::post('/login', 'login')->name('login');
+    // Route::get('/logout', 'logout')->name('logout');
 });
 
 Route::controller(UserController::class)->middleware('auth')->prefix('users')->group(function(){

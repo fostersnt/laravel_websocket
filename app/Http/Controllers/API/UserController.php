@@ -27,7 +27,7 @@ class UserController extends Controller
                 return response()->json(['state' => 'failed', 'message' => $error_message], 200);
             } else {
                 $user = User::query()->find(2);
-                // event(new UserInfoUpdated($user));
+                event(new UserInfoUpdated($user));
                 Log::info("USER LOGIN == SUCCESS");
                 return response()->json(['state' => 'failed', 'message' => 'Login success'], 200);
             }
